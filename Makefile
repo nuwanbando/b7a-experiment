@@ -1,9 +1,12 @@
-all: b7a_setup build
+all: setup build install
 
-b7a_setup:
-	@wget -P dist/ https://product-dist.ballerina.io/downloads/1.0.1/ballerina-1.0.1.zip
-	@unzip dist/ballerina-1.0.1.zip -d dist
-run:
+setup:
+	@sh builder/hellosvc/setup.sh
 
 build:
-	@./dist/ballerina-1.0.1/bin/ballerina build hellosvc
+	@sh builder/hellosvc/build.sh
+
+install:
+	@sh builder/hellosvc/install/install.sh
+clean:
+	@sh builder/hellosvc/clean.sh
