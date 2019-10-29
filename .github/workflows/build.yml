@@ -11,3 +11,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: build
       run: make
+    - name: Push
+      run: |
+        docker login docker.pkg.github.com --username nuwanbando --password "${GITHUB_PACKAGE_REGISTRY_TOKEN}"
+        docker push docker.pkg.github.com/nuwanbando/b7a-experiment/hellosvc:v1
+      env:
+        GITHUB_PACKAGE_REGISTRY_TOKEN: ${{ secrets.GITHUB_PACKAGE_REGISTRY_TOKEN }}
